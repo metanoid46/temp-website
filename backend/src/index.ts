@@ -2,13 +2,15 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 
 const app = express();
-const port = 8000;
 
+// Use the port from the environment variable or default to 8000
+const port = process.env.PORT || 8000;
+
+// Enable CORS
 app.use(cors());
 
-// Calculate expiration time 
-//mins*seconds*milliseconds
-const expirationTime = new Date(Date.now() + 10* 60 * 1000); 
+// Calculate expiration time (10 minutes from now)
+const expirationTime = new Date(Date.now() + 10 * 60 * 1000);
 
 app.get('/api/check-expiration', (req: Request, res: Response) => {
     const now = new Date();
